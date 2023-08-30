@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	name := "Trevor"
+	grid := GenerateGrid(10, 10)
 
-	fmt.Println(name)
+	fmt.Println(grid)
 }
