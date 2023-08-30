@@ -1,9 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/TrevorMcCubbin/ConwaysGameOfLife/grid"
+)
 
 func main() {
-	grid := GenerateGrid(10, 10)
+	grid := grid.GenerateGrid(10, 10)
 
-	fmt.Println(GetCell(3, 3, *grid))
+	fmt.Println(grid.GetCell(3, 3, *grid))
 }

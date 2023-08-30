@@ -1,18 +1,20 @@
-package main
+package grid
+
+import "github.com/TrevorMcCubbin/ConwaysGameOfLife/cell"
 
 type Grid struct {
 	Width  int
 	Height int
-	Cells  [][]Cell
+	Cells  [][]cell.Cell
 }
 
 func GenerateGrid(width int, height int) *Grid {
 	// create 2d array of cells
-	cells := make([][]Cell, width)
+	cells := make([][]cell.Cell, width)
 
 	// create second dimension of cells
 	for i := range cells {
-		cells[i] = make([]Cell, height)
+		cells[i] = make([]cell.Cell, height)
 	}
 
 	// create a new grid with the values provided
@@ -23,6 +25,6 @@ func GenerateGrid(width int, height int) *Grid {
 	}
 }
 
-func GetCell(x int, y int, grid Grid) *Cell {
+func GetCell(x int, y int, grid Grid) *cell.Cell {
 	return &grid.Cells[x][y]
 }
