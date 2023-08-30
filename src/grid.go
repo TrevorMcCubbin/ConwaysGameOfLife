@@ -22,3 +22,7 @@ func GenerateGrid(width int, height int) *Grid {
 		Cells:  cells,
 	}
 }
+
+func GetCell(x int, y int, grid Grid) *Cell {
+	return &grid.Cells[x][y]
+}

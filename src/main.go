@@ -5,5 +5,5 @@ import "fmt"
 func main() {
 	grid := GenerateGrid(10, 10)
 
-	fmt.Println(grid)
+	fmt.Println(GetCell(3, 3, *grid))
 }
