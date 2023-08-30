@@ -19,12 +19,41 @@ func GenerateGrid(width int, height int) *Grid {
 
 	// create a new grid with the values provided
 	return &Grid{
-		width:  width,
-		height: height,
+		Width:  width,
+		Height: height,
 		cells:  cells,
 	}
 }
 
 func GetCell(x int, y int, grid Grid) *cell.Cell {
-	return &grid.Cells[x][y]
+	return &grid.cells[x][y]
+}
+
+func Update(xPosition int, yPosition int, gameGrid Grid) {
+	cellsAlive := 0
+
+	// loop through all neighbours
+	for x := xPosition - 1; x <= xPosition+1; x++ {
+		for y := yPosition - 1; y <= yPosition+1; y++ {
+			// skip the cell you are currently checking
+			if x == xPosition && y == yPosition {
+				continue
+			}
+
+			if GetCell(x, y, gameGrid).IsAlive {
+				cellsAlive++
+			}
+		}
+	}
+
+	currentCell := GetCell(xPosition, yPosition, gameGrid)
+
+	currentCell.NextAliveState = currentCell.IsAlive
+
+	if currentCell.IsAlive && cellsAlive == 3 {
+		currentCell.NextAliveState = true
+	} else {
+		currentCell.NextAliveState = false
+	}
+
 }
