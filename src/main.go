@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	grid := grid.GenerateGrid(10, 10)
+	gameGrid := grid.GenerateGrid(10, 10)
 
-	fmt.Println(grid.GetCell(3, 3, *grid))
+	fmt.Println(grid.GetCell(3, 3, *gameGrid))
 }
