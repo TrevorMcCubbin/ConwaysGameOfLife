@@ -5,7 +5,7 @@ import "github.com/TrevorMcCubbin/ConwaysGameOfLife/cell"
 type Grid struct {
 	Width  int
 	Height int
-	Cells  [][]cell.Cell
+	cells  [][]cell.Cell
 }
 
 func GenerateGrid(width int, height int) *Grid {
@@ -19,9 +19,9 @@ func GenerateGrid(width int, height int) *Grid {
 
 	// create a new grid with the values provided
 	return &Grid{
-		Width:  width,
-		Height: height,
-		Cells:  cells,
+		width:  width,
+		height: height,
+		cells:  cells,
 	}
 }
 

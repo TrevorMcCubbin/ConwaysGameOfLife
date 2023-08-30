@@ -2,12 +2,12 @@ package cell
 
 type Cell struct {
 	IsAlive        bool
-	NextAliveState bool
+	nextAliveState bool
 }
 
 func NewCell() *Cell {
 	return &Cell{
 		IsAlive:        false,
-		NextAliveState: false,
+		nextAliveState: false,
 	}
 }
