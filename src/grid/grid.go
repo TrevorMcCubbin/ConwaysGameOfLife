@@ -1,6 +1,14 @@
 package grid
 
-import "math/rand"
+import (
+	"fmt"
+	"math/rand"
+)
+
+const (
+	aliveCell = "1"
+	deadCell  = "0"
+)
 
 type Grid [][]bool
 
@@ -24,6 +32,19 @@ func (grid Grid) Seed() {
 				row[i] = true
 			}
 		}
+	}
+}
+
+func (grid Grid) Display() {
+	for _, row := range grid {
+		for _, cell := range row {
+			if cell {
+				fmt.Printf(aliveCell)
+			} else {
+				fmt.Printf(deadCell)
+			}
+		}
+		fmt.Printf("\n")
 	}
 }
 
