@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	aliveCell = "1"
-	deadCell  = "0"
+	aliveCell = "\xF0\x9F\x9F\xA9"
+	deadCell  = "\xF0\x9F\x9F\xAB"
 )
 
 type Grid struct {
@@ -36,7 +36,7 @@ func GenerateGrid(width int, height int) *Grid {
 func (grid Grid) Seed() {
 	for _, row := range grid.gameGrid {
 		for i := range row {
-			if rand.Intn(4) == 1 {
+			if rand.Intn(grid.height/3) == 1 {
 				row[i] = true
 			}
 		}
@@ -91,10 +91,10 @@ func (grid Grid) UpdateCell(x, y int) bool {
 	}
 }
 
-func UpdateGrid(current, next Grid) {
+func UpdateGrid(current Grid) {
 	for i := 0; i < current.height; i++ {
 		for j := 0; j < current.width; j++ {
-			next.gameGrid[i][j] = current.UpdateCell(j, i)
+			current.gameGrid[i][j] = current.UpdateCell(j, i)
 		}
 	}
 }
