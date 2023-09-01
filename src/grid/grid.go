@@ -78,31 +78,23 @@ func (grid Grid) CellIsAlive(x, y int) bool {
 	return grid.gameGrid[y][x]
 }
 
-func Update(xPosition int, yPosition int, gameGrid Grid) {
-	cellsAlive := 0
+func (grid Grid) UpdateCell(x, y int) bool {
+	neighbours := grid.GetNeighbors(x, y)
+	isAlive := grid.CellIsAlive(x, y)
 
-	// loop through all neighbours
-	for x := xPosition - 1; x <= xPosition+1; x++ {
-		for y := yPosition - 1; y <= yPosition+1; y++ {
-			// skip the cell you are currently checking
-			if x == xPosition && y == yPosition {
-				continue
-			}
+	if neighbours < 4 && neighbours > 1 && isAlive {
+		return true
+	} else if neighbours == 3 && !isAlive {
+		return true
+	} else {
+		return false
+	}
+}
 
-			if GetCell(x, y, gameGrid).IsAlive {
-				cellsAlive++
-			}
+func UpdateGrid(current, next Grid) {
+	for i := 0; i < current.height; i++ {
+		for j := 0; j < current.width; j++ {
+			next.gameGrid[i][j] = current.UpdateCell(j, i)
 		}
 	}
-
-	currentCell := GetCell(xPosition, yPosition, gameGrid)
-
-	currentCell.NextAliveState = currentCell.IsAlive
-
-	if currentCell.IsAlive && cellsAlive == 3 {
-		currentCell.NextAliveState = true
-	} else {
-		currentCell.NextAliveState = false
-	}
-
 }
