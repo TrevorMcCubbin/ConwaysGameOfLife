@@ -47,12 +47,12 @@ func (grid Grid) Display() {
 	for _, row := range grid.gameGrid {
 		for _, cell := range row {
 			if cell {
-				fmt.Printf(aliveCell)
+				fmt.Print(aliveCell)
 			} else {
-				fmt.Printf(deadCell)
+				fmt.Print(deadCell)
 			}
 		}
-		fmt.Printf("\n")
+		fmt.Print("\n")
 	}
 }
 

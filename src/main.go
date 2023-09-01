@@ -11,7 +11,7 @@ import (
 const (
 	width          = 50
 	height         = 25
-	sleepIteration = 20
+	sleepIteration = 16
 	ansiEscapeSeq  = "\033c\x0c"
 )
 
@@ -29,5 +29,5 @@ func main() {
 }
 
 func clearScreen() {
-	fmt.Printf(ansiEscapeSeq)
+	fmt.Print(ansiEscapeSeq)
 }
