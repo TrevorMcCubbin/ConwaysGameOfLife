@@ -10,23 +10,31 @@ const (
 	deadCell  = "0"
 )
 
-type Grid [][]bool
+type Grid struct {
+	gameGrid [][]bool
+	width    int
+	height   int
+}
 
 func GenerateGrid(width int, height int) *Grid {
 	// create 2d array of cells
-	newGrid := make(Grid, height)
+	newGrid := make([][]bool, height)
 
 	// create second dimension of cells
 	for i := range newGrid {
 		newGrid[i] = make([]bool, width)
 	}
 
-	return &newGrid
+	return &Grid{
+		gameGrid: newGrid,
+		width:    width,
+		height:   height,
+	}
 }
 
 // Create a random grid, should be used
 func (grid Grid) Seed() {
-	for _, row := range grid {
+	for _, row := range grid.gameGrid {
 		for i := range row {
 			if rand.Intn(4) == 1 {
 				row[i] = true
@@ -36,7 +44,7 @@ func (grid Grid) Seed() {
 }
 
 func (grid Grid) Display() {
-	for _, row := range grid {
+	for _, row := range grid.gameGrid {
 		for _, cell := range row {
 			if cell {
 				fmt.Printf(aliveCell)
