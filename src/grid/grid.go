@@ -1,32 +1,30 @@
 package grid
 
-import "github.com/TrevorMcCubbin/ConwaysGameOfLife/cell"
+import "math/rand"
 
-type Grid struct {
-	Width  int
-	Height int
-	cells  [][]cell.Cell
-}
+type Grid [][]bool
 
 func GenerateGrid(width int, height int) *Grid {
 	// create 2d array of cells
-	cells := make([][]cell.Cell, width)
+	newGrid := make(Grid, height)
 
 	// create second dimension of cells
-	for i := range cells {
-		cells[i] = make([]cell.Cell, height)
+	for i := range newGrid {
+		newGrid[i] = make([]bool, width)
 	}
 
-	// create a new grid with the values provided
-	return &Grid{
-		Width:  width,
-		Height: height,
-		cells:  cells,
-	}
+	return &newGrid
 }
 
-func GetCell(x int, y int, grid Grid) *cell.Cell {
-	return &grid.cells[x][y]
+// Create a random grid, should be used
+func (grid Grid) Seed() {
+	for _, row := range grid {
+		for i := range row {
+			if rand.Intn(4) == 1 {
+				row[i] = true
+			}
+		}
+	}
 }
 
 func Update(xPosition int, yPosition int, gameGrid Grid) {
