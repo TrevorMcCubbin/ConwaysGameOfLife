@@ -56,6 +56,28 @@ func (grid Grid) Display() {
 	}
 }
 
+func (grid Grid) GetNeighbors(x, y int) int {
+	var neighbors int
+
+	for i := y - 1; i <= y+1; i++ {
+		for j := x - 1; j <= x+1; j++ {
+			if i == y && j == x {
+				continue
+			}
+			if grid.CellIsAlive(j, i) {
+				neighbors++
+			}
+		}
+	}
+	return neighbors
+}
+
+func (grid Grid) CellIsAlive(x, y int) bool {
+	y = (grid.height + y) % grid.height
+	x = (grid.width + x) % grid.width
+	return grid.gameGrid[y][x]
+}
+
 func Update(xPosition int, yPosition int, gameGrid Grid) {
 	cellsAlive := 0
 
